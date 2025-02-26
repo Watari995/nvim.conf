@@ -7,13 +7,19 @@
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
+
+-- インデント設定
+vim.opt.tabstop = 4 -- タブ幅を4に設定
+vim.opt.shiftwidth = 4 -- 自動インデント時のスペース数を4に設定
+vim.opt.expandtab = true -- タブをスペースに変換
+vim.opt.smartindent = true -- 自動インデントを有効化
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
