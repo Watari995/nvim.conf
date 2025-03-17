@@ -3,4 +3,5 @@ return {
   { import = 'custom.plugins.lazygit' },
   { import = 'custom.plugins.colorscheme' },
   { import = 'custom.plugins.icon' },
+  { import = 'custom.plugins.autotag' },
 }

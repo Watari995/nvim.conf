@@ -4,7 +4,15 @@ return {
   lazy = false, -- 起動時にロード
   priority = 1000, -- 他のプラグインよりも先に読み込む
   config = function()
-    -- カラースキームをcarbonfoxに設定
+    require('nightfox').setup {
+      options = {
+        transparent = true, -- 透過を有効化
+      },
+    }
     vim.cmd 'colorscheme carbonfox'
+
+    -- Neovimの背景をターミナルのデフォルト背景に統一
+    vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+    vim.cmd [[ hi NormalNC guibg=NONE ctermbg=NONE ]]
   end,
 }
