@@ -133,7 +133,13 @@ return {
           end
         end,
       })
-
+      -- エラー箇所にカーソルを置くとポップアップを表示
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        group = vim.api.nvim_create_augroup('float_diagnostic_cursor', { clear = true }),
+        callback = function()
+          vim.diagnostic.open_float(nil, { focus = false, scope = 'cursor' })
+        end,
+      })
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
@@ -151,6 +157,7 @@ return {
         virtual_text = {
           source = 'if_many',
           spacing = 2,
+          wrap = true,
           format = function(diagnostic)
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -182,7 +189,7 @@ return {
       local servers = {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        tsserver = {
+        ts_ls = {
           cmd = { 'typescript-language-server', '--stdio' },
           filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
           root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', '.git'),
@@ -244,7 +251,7 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'typescript-language-server', -- TypeScriptのLSP
+        'ts_ls', -- TypeScriptのLSP
         'gopls', -- golangのLSP
         'stylua', -- Used to format Lua code
         'lua-language-server',
