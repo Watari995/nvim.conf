@@ -208,6 +208,8 @@ return {
                 unusedparams = true,
               },
               staticcheck = true,
+              completeUnimported = true,
+              usePlaceholders = true,
             },
           },
         },

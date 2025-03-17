@@ -1,10 +1,10 @@
 return {
-  'datsfilipe/vesper.nvim',
-  name = 'vesper',
+  'EdenEast/nightfox.nvim',
+  name = 'nightfox',
   lazy = false, -- 起動時にロード
   priority = 1000, -- 他のプラグインよりも先に読み込む
   config = function()
-    -- カラースキームを適用
-    vim.cmd 'colorscheme vesper'
+    -- カラースキームをcarbonfoxに設定
+    vim.cmd 'colorscheme carbonfox'
   end,
 }
