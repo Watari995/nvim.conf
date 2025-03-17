@@ -1,7 +1,7 @@
 return {
   {
     'windwp/nvim-ts-autotag',
-    lazy = true, -- 必要な時にロード
+    lazy = false, -- Neovim起動時にプラグインが即ロードされるという意味
     config = function()
       require('nvim-ts-autotag').setup()
     end,
