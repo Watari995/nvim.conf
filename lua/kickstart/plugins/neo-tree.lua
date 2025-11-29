@@ -20,6 +20,11 @@ return {
           ['\\'] = 'close_window',
         },
       },
+      filtered_items = {
+        visible = true, -- 👈 フィルタされたファイルも表示
+        hide_dotfiles = false, -- 👈 ドットファイルを隠さない
+        hide_gitignored = false, -- 👈 Git ignoreされたファイルも表示
+      },
     },
   },
 }
