@@ -16,7 +16,7 @@ return {
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
-      autotag = { enable = true },
+      -- autotag設定は削除（lua/custom/plugins/autotag.luaで設定済み）
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:

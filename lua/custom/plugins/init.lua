@@ -4,4 +4,6 @@ return {
   { import = 'custom.plugins.colorscheme' },
   { import = 'custom.plugins.icon' },
   { import = 'custom.plugins.autotag' },
+  { import = 'custom.plugins.dashboard' },
+  { import = 'custom.plugins.copilot' },
 }

@@ -75,6 +75,12 @@ return {
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          -- Cmd+. for code action (works in GUI Neovim like Neovide)
+          map('<D-.>', vim.lsp.buf.code_action, 'Code Action (Cmd+.)', { 'n', 'x' })
+          -- Option+. for code action (works in terminals, doesn't conflict with IME)
+          map('<M-.>', vim.lsp.buf.code_action, 'Code Action (Option+.)', { 'n', 'x' })
+          -- Space+. for code action (alternative keybinding)
+          map('<leader>.', vim.lsp.buf.code_action, 'Code Action (Space+.)', { 'n', 'x' })
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
