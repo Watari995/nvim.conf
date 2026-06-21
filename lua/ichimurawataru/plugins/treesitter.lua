@@ -1,41 +1,37 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPre", "BufNewFile" },
-  branch = "main",
   build = ":TSUpdate",
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter")
-
-    treesitter.install({
-      "json",
-      "javascript",
-      "typescript",
-      "tsx",
-      "yaml",
-      "markdown",
-      "markdown_inline",
-      "bash",
-      "lua",
-      "vim",
-      "vimdoc",
-      "query",
-      "gitignore",
-      "go",
-      "dart",
-      "c",
-    })
+    -- defer to avoid nil-install error when this config runs while the module
+    -- is still being required (e.g. triggered by telescope-luasnip at startup)
+    vim.defer_fn(function()
+      require("nvim-treesitter").install({
+        "json",
+        "javascript",
+        "typescript",
+        "tsx",
+        "yaml",
+        "markdown",
+        "markdown_inline",
+        "bash",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "go",
+        "dart",
+        "c",
+      })
+    end, 0)
 
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
-        -- Enable treesitter highlighting and disable regex syntax
         pcall(vim.treesitter.start)
-        -- Enable treesitter-based indentation
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
 
-    -- use bash parser for zsh files
     vim.treesitter.language.register("bash", "zsh")
   end,
 }
