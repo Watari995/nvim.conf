@@ -1,5 +1,8 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
+-- Volta managed Node.js binaries (cspell etc.)
+vim.env.PATH = vim.env.HOME .. "/.volta/bin:" .. vim.env.PATH
+
 local opt = vim.opt
 
 opt.relativenumber = true
@@ -11,7 +14,8 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
-opt.wrap = false
+opt.wrap = true
+opt.breakindent = true
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
