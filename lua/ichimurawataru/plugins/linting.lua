@@ -5,7 +5,6 @@ return {
     local lint = require("lint")
 
     lint.linters_by_ft = {
-      ["*"] = { "cspell" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
       javascriptreact = { "eslint_d" },
@@ -55,6 +54,7 @@ return {
       end
 
       lint.try_lint(linters)
+      lint.try_lint({ "cspell" })
     end
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
