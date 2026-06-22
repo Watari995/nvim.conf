@@ -64,8 +64,53 @@ return {
       end,
     })
 
+    local function add_word_to_cspell()
+      local word = vim.fn.expand("<cword>")
+      if word == "" then return end
+
+      -- プロジェクトの cspell.json を優先、なければ ~/.cspell.json
+      local project_config = vim.fn.findfile("cspell.json", vim.fn.getcwd() .. ";")
+      local config_path = project_config ~= "" and vim.fn.fnamemodify(project_config, ":p")
+        or vim.env.HOME .. "/.cspell.json"
+
+      -- 既存の設定を読み込む
+      local config = {}
+      local file = io.open(config_path, "r")
+      if file then
+        local ok, decoded = pcall(vim.fn.json_decode, file:read("*a"))
+        file:close()
+        if ok then config = decoded end
+      end
+
+      -- 重複チェック
+      config.words = config.words or {}
+      for _, w in ipairs(config.words) do
+        if w == word then
+          vim.notify("cspell: '" .. word .. "' は登録済みです", vim.log.levels.INFO)
+          return
+        end
+      end
+
+      -- 追加してソート
+      table.insert(config.words, word)
+      table.sort(config.words)
+
+      -- 整形して書き戻す
+      local json_str = vim.fn.json_encode(config)
+      local pretty = vim.fn.system("echo " .. vim.fn.shellescape(json_str) .. " | python3 -m json.tool")
+      local out = io.open(config_path, "w")
+      if out then
+        out:write(pretty)
+        out:close()
+        vim.notify("cspell: '" .. word .. "' を追加 → " .. config_path, vim.log.levels.INFO)
+        lint.try_lint({ "cspell" })
+      end
+    end
+
     vim.keymap.set("n", "<leader>l", function()
       try_linting()
     end, { desc = "Trigger linting for current file" })
+
+    vim.keymap.set("n", "<leader>wa", add_word_to_cspell, { desc = "cspell: add word under cursor" })
   end,
 }
