@@ -43,8 +43,23 @@ keymap.set("n", "<leader>hp", function() vscode.action("editor.action.dirtydiff.
 keymap.set("n", "<leader>hs", function() vscode.action("git.stageSelectedRanges") end, { desc = "Stage hunk" })
 keymap.set("n", "<leader>hr", function() vscode.action("git.revertSelectedRanges") end, { desc = "Reset hunk" })
 
+-- ── ウィンドウ移動 (Ctrl+hjkl → editor group navigation) ────────────
+keymap.set("n", "<C-h>", function() vscode.action("workbench.action.navigateLeft") end, { desc = "Move to left editor group" })
+keymap.set("n", "<C-j>", function() vscode.action("workbench.action.navigateDown") end, { desc = "Move to lower editor group" })
+keymap.set("n", "<C-k>", function() vscode.action("workbench.action.navigateUp") end, { desc = "Move to upper editor group" })
+keymap.set("n", "<C-l>", function() vscode.action("workbench.action.navigateRight") end, { desc = "Move to right editor group" })
+
 -- ── ウィンドウ分割 (splits → VSCode editor groups) ───────────────────
 keymap.set("n", "<leader>sm", function() vscode.action("workbench.action.toggleMaximizeEditorGroup") end, { desc = "Maximize/minimize split" })
+
+-- ── タブ (bufferline → VSCode tabs) ──────────────────────────────────
+keymap.set("n", "<leader>tn", function() vscode.action("workbench.action.nextEditor") end, { desc = "Next tab" })
+keymap.set("n", "<leader>tp", function() vscode.action("workbench.action.previousEditor") end, { desc = "Prev tab" })
+keymap.set("n", "<leader>tx", function() vscode.action("workbench.action.closeActiveEditor") end, { desc = "Close tab" })
+keymap.set("n", "<leader>to", function() vscode.action("workbench.action.files.newUntitledFile") end, { desc = "New tab" })
+
+-- ── ターミナル (<leader>cc → VSCode integrated terminal) ─────────────
+keymap.set("n", "<leader>cc", function() vscode.action("workbench.action.terminal.toggleTerminal") end, { desc = "Toggle terminal" })
 
 -- ── フォーマット ──────────────────────────────────────────────────────
 keymap.set("n", "<leader>mp", function() vscode.action("editor.action.formatDocument") end, { desc = "Format document" })
