@@ -16,6 +16,7 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- terminal
 keymap.set("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+keymap.set("t", "<S-Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- claude code
 keymap.set("n", "<leader>cc", function()
