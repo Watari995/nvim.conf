@@ -8,7 +8,16 @@ return {
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
+    local function on_attach(bufnr)
+      local api = require("nvim-tree.api")
+      api.config.mappings.default_on_attach(bufnr)
+
+      vim.keymap.set("n", "<leader>>", ":vertical resize +5<CR>", { buffer = bufnr, silent = true, desc = "Widen nvim-tree" })
+      vim.keymap.set("n", "<leader><", ":vertical resize -5<CR>", { buffer = bufnr, silent = true, desc = "Narrow nvim-tree" })
+    end
+
     nvimtree.setup({
+      on_attach = on_attach,
       view = {
         width = 50,
         relativenumber = true,
@@ -21,19 +30,16 @@ return {
         icons = {
           glyphs = {
             folder = {
-              arrow_closed = "➡", -- arrow when folder is closed
-              arrow_open = "⬇", -- arrow when folder is open
+              arrow_closed = "\u{F061}", -- nf-fa-arrow_right (josean original)
+              arrow_open = "\u{F063}", -- nf-fa-arrow_down (josean original)
             },
           },
         },
       },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
       actions = {
         open_file = {
           window_picker = {
-            enable = false,
+            enable = true,
           },
         },
       },
