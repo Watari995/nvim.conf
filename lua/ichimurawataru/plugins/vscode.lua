@@ -46,7 +46,7 @@ keymap.set("n", "<leader>xw", function() vscode.action("workbench.actions.view.p
 keymap.set("n", "<leader>xd", function() vscode.action("workbench.actions.view.problems") end, { desc = "Document diagnostics" })
 
 -- ── Git (LazyGit → VSCode SCM) ───────────────────────────────────────
-keymap.set("n", "<leader>lg", function() vscode.action("workbench.view.scm") end, { desc = "Open SCM" })
+keymap.set("n", "<leader>lg", function() vscode.action("lazygit-vscode.toggle") end, { desc = "Toggle LazyGit" })
 
 -- ── Git hunks (gitsigns → VSCode diff) ───────────────────────────────
 keymap.set("n", "]h", function() vscode.action("workbench.action.editor.nextChange") end, { desc = "Next hunk" })
