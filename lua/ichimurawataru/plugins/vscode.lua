@@ -50,6 +50,10 @@ keymap.set("n", "<C-k>", function() vscode.action("workbench.action.navigateUp")
 keymap.set("n", "<C-l>", function() vscode.action("workbench.action.navigateRight") end, { desc = "Move to right editor group" })
 
 -- ── ウィンドウ分割 (splits → VSCode editor groups) ───────────────────
+keymap.set("n", "<leader>sv", function() vscode.action("workbench.action.splitEditorRight") end, { desc = "Split right" })
+keymap.set("n", "<leader>sh", function() vscode.action("workbench.action.splitEditorDown") end, { desc = "Split down" })
+keymap.set("n", "<leader>se", function() vscode.action("workbench.action.evenEditorWidths") end, { desc = "Equal splits" })
+keymap.set("n", "<leader>sx", function() vscode.action("workbench.action.closeEditorsAndGroup") end, { desc = "Close split" })
 keymap.set("n", "<leader>sm", function() vscode.action("workbench.action.toggleMaximizeEditorGroup") end, { desc = "Maximize/minimize split" })
 
 -- ── タブ (bufferline → VSCode tabs) ──────────────────────────────────
