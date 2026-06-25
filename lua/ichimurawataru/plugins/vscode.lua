@@ -8,6 +8,7 @@ local keymap = vim.keymap
 -- ── ファイルツリー (NvimTree → VSCode Explorer) ──────────────────────
 keymap.set("n", "<leader>ee", function() vscode.action("workbench.view.explorer") end, { desc = "Toggle file explorer" })
 keymap.set("n", "<leader>ef", function() vscode.action("workbench.files.action.showActiveFileInExplorer") end, { desc = "Show file in explorer" })
+keymap.set("n", "<leader>ec", function() vscode.action("workbench.action.closeSidebar") end, { desc = "Close sidebar" })
 keymap.set("n", "<leader>er", function() vscode.action("workbench.files.action.refreshFilesExplorer") end, { desc = "Refresh file explorer" })
 
 -- ── ファイル検索 (Telescope → VSCode Quick Open) ─────────────────────
