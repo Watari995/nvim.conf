@@ -58,8 +58,15 @@ keymap.set("n", "<leader>tp", function() vscode.action("workbench.action.previou
 keymap.set("n", "<leader>tx", function() vscode.action("workbench.action.closeActiveEditor") end, { desc = "Close tab" })
 keymap.set("n", "<leader>to", function() vscode.action("workbench.action.files.newUntitledFile") end, { desc = "New tab" })
 
--- ── ターミナル (<leader>cc → VSCode integrated terminal) ─────────────
-keymap.set("n", "<leader>cc", function() vscode.action("workbench.action.terminal.toggleTerminal") end, { desc = "Toggle terminal" })
+-- ── ターミナル (<leader>cc → Claude Code with dangerously-skip-permissions) ──
+keymap.set("n", "<leader>cc", function()
+  vscode.action("workbench.action.terminal.new")
+  vim.defer_fn(function()
+    vscode.action("workbench.action.terminal.sendSequence", {
+      args = { text = "claude --dangerously-skip-permissions\r" },
+    })
+  end, 300)
+end, { desc = "Open Claude Code" })
 
 -- ── フォーマット ──────────────────────────────────────────────────────
 keymap.set("n", "<leader>mp", function() vscode.action("editor.action.formatDocument") end, { desc = "Format document" })
