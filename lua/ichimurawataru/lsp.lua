@@ -1,3 +1,13 @@
+-- Suppress noisy INFO from Neovim's LSP file watcher when watched paths don't exist yet.
+-- Source: vim/_watch.lua - "Server may send workspace/didChangeWatchedFiles with nonexistent baseUri"
+local _orig_notify = vim.notify
+vim.notify = function(msg, level, opts)
+  if type(msg) == "string" and msg:match("^watch%.watch:") then
+    return
+  end
+  _orig_notify(msg, level, opts)
+end
+
 local keymap = vim.keymap -- for conciseness
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -57,6 +67,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
+  virtual_text = true,
   signs = {
     text = {
       [severity.ERROR] = " ",
