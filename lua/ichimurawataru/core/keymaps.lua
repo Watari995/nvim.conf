@@ -39,3 +39,6 @@ keymap.set("i", "<Home>", function()
   local first_non_blank = vim.fn.match(vim.fn.getline("."), "\\S") + 1
   return col == first_non_blank and "<C-o>0" or "<C-o>^"
 end, { expr = true, desc = "Smart home" })
+
+-- clear search highlight
+keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
