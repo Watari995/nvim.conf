@@ -11,7 +11,7 @@
 |---------|----------------|
 | [ファイルエクスプローラー](#ファイルエクスプローラー-nvim-tree) | `<leader>ee` |
 | [ウィンドウ / スプリット](#ウィンドウ--スプリット管理) | `<leader>sv`, `<leader>sh` |
-| [タブ管理](#タブ管理) | `<leader>to`, `<leader>tn` |
+| [タブ管理](#タブ管理) | `<leader>to`, `<leader>tn`, `<leader>tp` |
 | [Telescope (ファジーファインダー)](#telescope-ファジーファインダー) | `<leader>ff`, `<leader>fs` |
 | [LSP](#lsp-go--typescript--dart) | `gd`, `K`, `<leader>ca` |
 | [フォーマット / Lint](#フォーマット--lint) | `<leader>mp`, `<leader>l` |
@@ -59,11 +59,10 @@
 
 | キー | 動作 |
 |------|------|
-| `<leader>to` | 新しいタブを開く |
+| `<leader>to` | 現在のファイルを新しいタブで開き、ファイルツリーでフォーカス |
 | `<leader>tx` | 現在のタブを閉じる |
 | `<leader>tn` | 次のタブへ |
 | `<leader>tp` | 前のタブへ |
-| `<leader>tf` | 現在のバッファを新しいタブで開く |
 
 ---
 
