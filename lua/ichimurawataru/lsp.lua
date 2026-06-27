@@ -66,14 +66,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local severity = vim.diagnostic.severity
 
+local icons = {
+  [severity.ERROR] = vim.fn.nr2char(0xF057) .. " ",
+  [severity.WARN]  = vim.fn.nr2char(0xF071) .. " ",
+  [severity.HINT]  = vim.fn.nr2char(0xF0820) .. " ",
+  [severity.INFO]  = vim.fn.nr2char(0xF05A) .. " ",
+}
+
+local sign_names = {
+  [severity.ERROR] = "DiagnosticSignError",
+  [severity.WARN]  = "DiagnosticSignWarn",
+  [severity.HINT]  = "DiagnosticSignHint",
+  [severity.INFO]  = "DiagnosticSignInfo",
+}
+for sev, name in pairs(sign_names) do
+  vim.fn.sign_define(name, { text = icons[sev], texthl = name, numhl = "" })
+end
+
 vim.diagnostic.config({
   virtual_text = true,
   signs = {
-    text = {
-      [severity.ERROR] = " ",
-      [severity.WARN] = " ",
-      [severity.HINT] = "󰠠 ",
-      [severity.INFO] = " ",
-    },
+    text = icons,
   },
 })
