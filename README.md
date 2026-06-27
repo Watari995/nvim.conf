@@ -20,6 +20,7 @@
 | [Trouble (診断リスト)](#trouble-診断リスト) | `<leader>xw`, `<leader>xd` |
 | [TODO コメント](#todo-コメント) | `]t`, `[t` |
 | [補完 (nvim-cmp)](#補完-nvim-cmp) | `<C-Space>`, `<CR>` |
+| [AI 補完 (Copilot)](#ai-補完-copilot) | `<Tab>`, `<leader>at`, `<leader>as` |
 | [Surround](#surround-nvim-surround) | `ys`, `ds`, `cs` |
 | [Substitute](#substitute-substitutenvim) | `<leader>r` |
 | [Treesitter テキストオブジェクト](#treesitter-テキストオブジェクト) | `af`, `im`, `]m` |
@@ -181,6 +182,18 @@
 | `<C-Space>` | 補完を起動 |
 | `<C-e>` | 補完を中止 |
 | `<CR>` | 選択を確定 |
+
+---
+
+## AI 補完 (Copilot)
+
+| キー | 動作 |
+|------|------|
+| `<Tab>` | Copilot の提案を受け入れる |
+| `<leader>at` | Copilot を有効 / 無効に切り替え |
+| `<leader>as` | Copilot の状態を表示 |
+
+初回は Neovim 起動後に `:Copilot setup` を実行して認証する。
 
 ---
 
