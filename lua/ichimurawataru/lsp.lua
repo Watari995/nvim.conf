@@ -20,8 +20,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     opts.desc = "Show LSP references"
     keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
-    opts.desc = "Go to declaration"
-    keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+    opts.desc = "Go to declaration (vsplit right)"
+    keymap.set("n", "gD", function()
+      vim.cmd("vsplit")
+      vim.lsp.buf.declaration()
+    end, opts)
 
     opts.desc = "Show LSP definition"
     keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- show lsp definition
