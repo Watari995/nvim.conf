@@ -1,27 +1,29 @@
 return {
-  "github/copilot.vim",
-  event = "InsertEnter",
-  cmd = "Copilot",
+  "Exafunction/windsurf.vim",
+  event = "BufEnter",
   keys = {
     {
       "<leader>at",
       function()
-        if vim.g.copilot_manual_disabled then
-          vim.g.copilot_manual_disabled = false
-          vim.cmd("Copilot enable")
-          vim.notify("Copilot enabled")
+        if vim.g.codeium_enabled == false then
+          vim.g.codeium_enabled = true
+          vim.cmd("CodeiumEnable")
+          vim.notify("Windsurf enabled")
         else
-          vim.g.copilot_manual_disabled = true
-          vim.cmd("Copilot disable")
-          vim.notify("Copilot disabled")
+          vim.g.codeium_enabled = false
+          vim.cmd("CodeiumDisable")
+          vim.notify("Windsurf disabled")
         end
       end,
-      desc = "Toggle Copilot",
+      desc = "Toggle Windsurf",
     },
     {
       "<leader>as",
-      "<cmd>Copilot status<cr>",
-      desc = "Show Copilot status",
+      function()
+        local status = vim.g.codeium_enabled == false and "disabled" or "enabled"
+        vim.notify("Windsurf: " .. status)
+      end,
+      desc = "Show Windsurf status",
     },
   },
 }
