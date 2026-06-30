@@ -20,7 +20,7 @@
 | [Trouble (診断リスト)](#trouble-診断リスト) | `<leader>xw`, `<leader>xd` |
 | [TODO コメント](#todo-コメント) | `]t`, `[t` |
 | [補完 (nvim-cmp)](#補完-nvim-cmp) | `<C-Space>`, `<CR>` |
-| [AI 補完 (Copilot)](#ai-補完-copilot) | `<Tab>`, `<leader>at`, `<leader>as` |
+| [AI 補完 (Supermaven)](#ai-補完-supermaven) | `<Tab>`, `<C-f>`, `<leader>at`, `<leader>as` |
 | [Surround](#surround-nvim-surround) | `ys`, `ds`, `cs` |
 | [Substitute](#substitute-substitutenvim) | `<leader>r` |
 | [Treesitter テキストオブジェクト](#treesitter-テキストオブジェクト) | `af`, `im`, `]m` |
@@ -173,27 +173,31 @@
 
 ## 補完 (nvim-cmp)
 
+LSP / スニペット / バッファのポップアップ補完。
+
 | キー | 動作 |
 |------|------|
 | `<C-k>` | 前の候補を選択 |
 | `<C-j>` | 次の候補を選択 |
 | `<C-b>` | ドキュメントを上にスクロール |
-| `<C-f>` | ドキュメントを下にスクロール |
+| `<C-d>` | ドキュメントを下にスクロール |
 | `<C-Space>` | 補完を起動 |
 | `<C-e>` | 補完を中止 |
 | `<CR>` | 選択を確定 |
 
+> **注意:** `<C-f>` は Supermaven の単語補完に割り当てているため `<C-d>` に変更済み。
+
 ---
 
-## AI 補完 (Copilot)
+## AI 補完 (Supermaven)
 
 | キー | 動作 |
 |------|------|
-| `<Tab>` | Copilot の提案を受け入れる |
-| `<leader>at` | Copilot を有効 / 無効に切り替え |
-| `<leader>as` | Copilot の状態を表示 |
-
-初回は Neovim 起動後に `:Copilot setup` を実行して認証する。
+| `<Tab>` | 提案を全て受け入れる |
+| `<C-f>` | 次の単語だけ受け入れる（部分補完） |
+| `<C-]>` | 提案をキャンセル |
+| `<leader>at` | Supermaven を有効 / 無効に切り替え |
+| `<leader>as` | Supermaven の状態を表示 |
 
 ---
 

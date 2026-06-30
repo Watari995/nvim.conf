@@ -5,32 +5,60 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
-    -- Set header
-    dashboard.section.header.val = {
-      "                                                     ",
-      "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-      "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-      "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-      "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-      "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-      "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-      "                                                     ",
+    vim.api.nvim_set_hl(0, "AlphaHeader", { fg = "#ffffff" })
+
+    -- 1行おきに間引いて約半分のサイズに
+    local art = {
+      "                             ===                                     =",
+      "                         ==========                                  ======",
+      "                     ================                                ==========",
+      "                 =======================                             ==============",
+      "             ++**+=========================                          ==================",
+      "          ++++++++**+=========================                       =+=+=+==+==+==+==+=+=",
+      "          +*+*+*+*++***=========================                     +++++++++=+++++=+++++",
+      "          **+**+***+******=========================                  +++++++++++++++++++++",
+      "          *******************=========================               +++++++++++++++++++++",
+      "          *********************==========================            +++++++++++++++++++++",
+      "          *********************   ==========================         +++++++++++++++++++++",
+      "          *********************     +==+=+=+=+=+=+==+===+=+===       +++++++++++++++++++++",
+      "          *********************        +=+=++=+=+=+=+=+=++=+=+==+    *+*+*+*+*+*+*+*+*+*+*",
+      "          *********************           +++=++=+=++=++++++++++++++ *********************",
+      "          *********************              +++++++++++++++++++++++++********************",
+      "          *********************                 +++++++++++++++++++++++++*****************",
+      "          *********************                    +++++++++++++++++++++++++**************",
+      "          *********************                      +++++++++++++++++++++++++************",
+      "           ********************                         +++++++++++++*+*+*+*+*+*+*********",
+      "               #*#*#*#*#*#*#*#*                            *+*+*+*+*+***********+****",
+      "                   ##########*#                               **+*+*+************",
+      "                       ########                                 *************",
+      "                            ###                                    ******",
     }
 
-    -- Set menu
-    dashboard.section.buttons.val = {
-      dashboard.button("e", "  > New File", "<cmd>ene<CR>"),
-      dashboard.button("SPC ee", "  > Toggle file explorer", "<cmd>NvimTreeToggle<CR>"),
-      dashboard.button("SPC ff", "󰱼 > Find File", "<cmd>Telescope find_files<CR>"),
-      dashboard.button("SPC fs", "  > Find Word", "<cmd>Telescope live_grep<CR>"),
-      dashboard.button("SPC wr", "󰁯  > Restore Session For Current Directory", "<cmd>AutoSession restore<CR>"),
-      dashboard.button("q", " > Quit NVIM", "<cmd>qa<CR>"),
+    -- 最長行の長さを取得してターミナル幅に合わせて水平センタリング
+    local max_width = 0
+    for _, line in ipairs(art) do
+      max_width = math.max(max_width, #line)
+    end
+    local left_pad = math.max(0, math.floor((vim.o.columns - max_width) / 2))
+    local pad = string.rep(" ", left_pad)
+
+    local header_lines = {}
+    for _, line in ipairs(art) do
+      table.insert(header_lines, pad .. line)
+    end
+
+    dashboard.section.header.val = header_lines
+    dashboard.section.header.opts.hl = "AlphaHeader"
+    dashboard.section.header.opts.position = "left"
+    dashboard.section.buttons.val = {}
+
+    dashboard.opts.layout = {
+      { type = "padding", val = math.max(1, math.floor((vim.fn.winheight(0) - #art) / 2)) },
+      dashboard.section.header,
+      { type = "padding", val = 1 },
     }
 
-    -- Send config to alpha
     alpha.setup(dashboard.opts)
-
-    -- Disable folding on alpha buffer
     vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
   end,
 }

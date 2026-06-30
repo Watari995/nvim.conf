@@ -98,6 +98,10 @@ return {
       -- 整形して書き戻す
       local json_str = vim.fn.json_encode(config)
       local pretty = vim.fn.system("echo " .. vim.fn.shellescape(json_str) .. " | python3 -m json.tool")
+      if vim.v.shell_error ~= 0 then
+        vim.notify("cspell: JSON整形に失敗しました", vim.log.levels.ERROR)
+        return
+      end
       local out = io.open(config_path, "w")
       if out then
         out:write(pretty)
