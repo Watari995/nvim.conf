@@ -18,6 +18,9 @@ return {
 
     nvimtree.setup({
       on_attach = on_attach,
+      filesystem_watchers = {
+        enable = false,
+      },
       view = {
         width = 50,
         relativenumber = true,

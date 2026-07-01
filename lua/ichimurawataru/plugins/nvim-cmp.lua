@@ -6,7 +6,7 @@ return {
     "hrsh7th/cmp-path", -- source for file system paths
     {
       "L3MON4D3/LuaSnip",
-      build = "make install_jsregexp",
+      build = "make install_jsregexp && codesign --force --sign - --timestamp=none deps/luasnip-jsregexp.so",
     },
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
